@@ -112,11 +112,23 @@ Conventional Commits + 功能 ID，例：`feat(store): A-05 桌号管理-批量�
 
 - 绝不允许攒一大堆改动不提交就结束任务或会话
 
-### 4.5 禁止事项
+### 4.5 更新日志（CHANGELOG.md）
+
+- 仓库根维护 `CHANGELOG.md`（Keep a Changelog 格式：Unreleased / 版本+日期 / Added·Changed·Fixed·Removed 分类），与代码同仓库、同推送
+
+- 每完成一个功能 ID，**在同一个 commit 内**向 `Unreleased` 段追加条目：分类 + 功能 ID + 一句话说明（例：`- Added: A-05 桌号管理（批量导入/二维码导出）`）
+
+- Bug 修复进 `Fixed`，返工/行为变化进 `Changed`——与 commit type 对应
+
+- 里程碑验收通过后，将 `Unreleased` 归档为版本号 + 日期，再新开空的 `Unreleased`
+
+- **禁止事后补写、批量补记**——changelog 条目与 commit 一一同步，缺条目视为任务未闭环
+
+### 4.6 禁止事项
 
 force push · 修改 git config · 提交 `application-local.yaml` / `*.env` / 密钥证书 / `node_modules/` / `dist/` / `reference/` / `.uploads/`（均已或应加入 .gitignore）· commit 前必须 `git status` 复查 · main 上的合并用普通 merge
 
-### 4.6 上游同步
+### 4.7 上游同步
 
 每月 merge `upstream/master-jdk25` 一次（三条纪律见计划 §4.4：新功能开新模块/改上游走扩展点/维护 UPSTREAM\_PATCHES.md）。
 
@@ -236,7 +248,7 @@ saas_plan / tenant_subscription / usage_daily
 
 - 不确定的三方 API 必须查官方文档或本地 SDK 源码——禁止编造参数
 
-- 完成每个任务的闭环链：**测试通过（单测+冒烟）→ 立即 commit → 立即 push → CI 绿 → 更新跟踪表**，缺一不可；禁止"先写完回头再测"
+- 完成每个任务的闭环链：**测试通过（单测+冒烟）→ 立即 commit（含 CHANGELOG.md 条目）→ 立即 push → CI 绿 → 更新跟踪表**，缺一不可；禁止"先写完回头再测"
 
 - **敏感域完成后必须停下等待人工复核**（支付回调/退款、提现打款、数据库迁移脚本、租户越权测试、合并 main）——完整职责表见计划 §6.4，复核通过前不得继续下游任务
 

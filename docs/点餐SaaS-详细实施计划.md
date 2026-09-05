@@ -83,7 +83,7 @@
 
 | 角色       | 职责                                                                                                          |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
-| AI（编码代理） | 按功能 ID 接单：按「实现方式」列选择途径（芋道复用/yshop 移植/自研）→ 写代码+测试 → commit+push 到 GitHub 私有仓库 → 更新跟踪表状态。**全部执行规则见《AI-工程手册》** |
+| AI（编码代理） | 按功能 ID 接单：按「实现方式」列选择途径（芋道复用/yshop 移植/自研）→ 写代码+测试 → commit（含 CHANGELOG.md 条目）+push 到 GitHub 私有仓库 → 更新跟踪表状态。**全部执行规则见《AI-工程手册》** |
 | 人（项目负责人） | 派单（《派单指南.md》：启动提示词/任务模板）、敏感域逐行复核（见 §6.4 红线表）、里程碑验收、合并 main、方向决策                                            |
 
 **五文档分工**：本计划=项目怎么管（人看）→ 派单指南=人怎么派单（人看）→ 工程手册=AI 怎么干（AI 看）→ 跟踪表=做到哪 → 核验报告=什么不能碰。所有上下文都在文档里，AI 会话可随时中断重开而不丢失信息。
@@ -334,7 +334,7 @@ git fetch upstream && git merge upstream/master-jdk25   # 每月一次
 1. **jdk25 决策门（半天）**：checkout master-jdk25 最新 tag → `mvn clean package` 全绿 → issue 扫描（pay/mall/mp 的 SB4 报错不堆积）→ 微信支付沙箱冒烟。绿灯起步 / 红灯退 master-jdk17
 2. 裁剪模块：保留 `system / infra / pay / member / mp / product / promotion / trade`，砍 BPM/CRM/ERP/报表/AI/IoT/MES/IM
 3. License 审计：**已完成（2026-09-05，见** **[开源授权核验报告](开源授权核验报告.md)）**——芋道/yshop-drink/BiteGo/TKOB/TastyIgniter 均 MIT；fuint 系（AGPL + 无授权 + 商用收费）、Jeepay（LGPL）、Floreant（MRPL）划只读红线；剩余：license-maven-plugin 进 CI、建 NOTICE.md
-4. **私有仓库与工程化（X-03）**：建立 GitHub 私有仓库 → 底座代码首次提交 push → 配置双远程（origin=私有仓库 / upstream=芋道官方）→ main 分支保护 → 分支策略、CI（构建+单测+license 扫描）、dev/prod docker-compose、统一规范
+4. **私有仓库与工程化（X-03）**：建立 GitHub 私有仓库 → 底座代码首次提交 push → 初始化 `CHANGELOG.md`（Keep a Changelog 格式）→ 配置双远程（origin=私有仓库 / upstream=芋道官方）→ main 分支保护 → 分支策略、CI（构建+单测+license 扫描）、dev/prod docker-compose、统一规范
 5. **微信资质启动（第一天）**：开放平台账号 + 认证（第三方平台代小程序）；先用自有小程序
 6. 数据库规范：金额 int 分、tenant\_id 自动注入、软删/审计字段
 7. reference/ 目录：✅ 已建（yshop 完整版已 clone 入内并完成实证）
@@ -462,7 +462,7 @@ P1 部分：
 
 - **里程碑结束**：用《派单指南》§2 模板⑤跑验收 + 批量对账跟踪表
 
-- **跟踪表状态即审计**：任何标「已完成」的 ID 必须有对应 commit + CI 绿记录，否则周例会纠正
+- **跟踪表状态即审计**：任何标「已完成」的 ID 必须有对应 commit + CI 绿记录 + CHANGELOG.md 条目，否则周例会纠正
 
 ### 6.4 人工红线（不可完全交给 AI）
 
