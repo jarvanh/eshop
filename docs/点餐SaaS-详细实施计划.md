@@ -137,14 +137,15 @@
 ### 3.1 参考项目矩阵
 
 > 工作区已 clone：`yshop-drink-boot3`（后端）、`yshop-drink-vue3`（管理端）、`yshop-drink-uniapp-vue3`（顾客端）。
-> 建议再建 `reference/` 目录（加入 .gitignore）存放其余参考仓库，永不进主仓库。
+> `reference/` 目录已建（已加入 .gitignore）存放其余参考仓库，永不进主仓库。
+> **所有项目 License 已于 2026-09-05 核验完毕，证据见 [开源授权核验报告](开源授权核验报告.md) 与 `docs/license-evidence/`。**
 
 | 项目 | License | 技术栈 | 对口里程碑 | 用法 |
 |---|---|---|---|---|
 | **ruoyi-vue-pro**（master-jdk25） | MIT | Java25/SB4/Vue3 | 底座 | fork 跟踪（见 3.3） |
 | **yshop-drink**（工作区已有） | **MIT（已核验 LICENSE）** | Java17/SB3/Vue3/uniapp | M1/M2/M4 | **可移植代码（保留版权声明）**；优先抄：多门店模型、积分+金额兑换逻辑、充值/会员卡、装修组件、uniapp 页面结构 |
-| fuintCatering | M0 核验 | SpringBoot/uniapp | M3/M4 | 只读参考（核验 License 前）；抄：收银台扫码枪交互、云打印对接、卡券核销 |
-| **BiteGo 点点餐** | 未知（毕设） | NestJS/MongoDB | **M5/M1** | 只读参考；精读其公开实现文档：opId 幂等 + cart.version 乐观锁 + Redis Pub/Sub、非库存规格 priceItemKey、平台/租户/门店三层授权 |
+| fuintCatering | ⚠️ 无 LICENSE + 商用需购买授权；主仓 fuint 为 **AGPL-3.0** | SpringBoot/uniapp | M3/M4 | **严格只读**；抄：收银台扫码枪交互、云打印对接、卡券核销（仅设计层面） |
+| **BiteGo 点点餐** | **MIT（已核验）** | NestJS/MongoDB | **M5/M1** | 法律上可移植（TS→Java 无法直接移植，实际以精读文档为主）：opId 幂等 + cart.version 乐观锁 + Redis Pub/Sub、非库存规格 priceItemKey、平台/租户/门店三层授权 |
 | TKOB_QROrderSystem | MIT | Node | M2/M5 | 整体架构对照；多租户 QR + KDS + 实时订单流 |
 | TastyIgniter | MIT | PHP | M1/M2 | 产品设计对标：按桌容量的预约、餐段菜单可见性、门店配送区域+起送价、KDS 看板交互 |
 | Floreant POS | MRPL 1.2 | Java Swing | M3 | 只读参考（协议要求改后开源，禁止拷代码）；抄领域规则：并台/拆单/反结账授权/钱箱对班/打印机分组路由与故障降级 |
@@ -156,8 +157,10 @@
 | 用途 | 允许的项目 |
 |---|---|
 | 抄设计思想、表结构思路、交互流程 | 任何协议都安全 |
-| 拷贝代码进主仓库 | 仅 MIT（芋道、yshop-drink、TKOB、TastyIgniter、FlashWaimai）；**必须保留原版权声明**，在 `NOTICE.md` 登记来源 |
-| LGPL（Jeepay）/ MRPL（Floreant）/ 未核验（BiteGo、fuint） | 严格只读，禁止任何代码拷贝 |
+| 拷贝代码进主仓库 | 仅 MIT（芋道、yshop-drink、BiteGo、TKOB、TastyIgniter、FlashWaimai）；**必须保留原版权声明**，在 `NOTICE.md` 登记来源 |
+| LGPL（Jeepay）/ MRPL（Floreant）/ AGPL 及无授权（fuint 系） | 严格只读，禁止任何代码拷贝 |
+
+> ⚠️ 依赖注意项：mysql-connector-j 为 GPLv2 + FOSS Exception——SaaS 服务端使用无风险；若未来做私有化部署交付，需换 MariaDB 驱动或重新评估。hutool 为 MulanPSL-2.0（宽松，保留声明）。
 
 CI 中引入 license-maven-plugin 扫描依赖与源码；`NOTICE.md` 记录所有借用的 MIT 代码出处。
 
@@ -206,7 +209,7 @@ git fetch upstream && git merge upstream/master-jdk25
    - 冒烟：空租户 + 微信支付沙箱回调跑通
    - **绿灯 → jdk25 起步；红灯 → 退回 master-jdk17（JDK17+SB3.5），并在上线后第一低峰期执行升 4 专项**
 2. 裁剪模块：保留 `system / infra / pay / member / mp / product / promotion / trade`，砍掉 BPM/CRM/ERP/报表/AI/IoT/MES/IM
-3. License 审计：yudao MIT 确认（+ yshop-drink MIT 已核验）、fuint License 核验、license-maven-plugin 进 CI
+3. License 审计：**已完成（2026-09-05，见 [开源授权核验报告](开源授权核验报告.md)）**——芋道/yshop-drink/BiteGo/TKOB/TastyIgniter 均 MIT；fuint 系（AGPL + 无授权 + 商用收费）、Jeepay（LGPL）、Floreant（MRPL）划只读红线；剩余：license-maven-plugin 进 CI、建 NOTICE.md
 4. 工程化：Git 分支策略、CI（构建+单测+镜像）、dev/prod docker-compose（MySQL/Redis/RocketMQ）、统一异常/校验/MapStruct 规范
 5. **微信资质启动（第一天就办，周期长）**：微信开放平台账号 + 认证（目标：第三方平台代小程序）；先用自有小程序调试
 6. 数据库规范定稿：金额 int 分、`tenant_id` 由芋道自动注入、软删/审计字段
@@ -496,7 +499,7 @@ M0 ── M1 ── M2 ────── M4 ──┐
 |---|---|---|---|
 | R1 | 微信第三方平台认证周期长（数周） | 高 | M0 第一天启动申请；开发期用自有小程序 |
 | R2 | SB4 生态残余兼容问题（jdk25 分支用户基数小） | 中 | M0 决策门体检；业务 bug 交叉查 jdk17 分支 issue；红灯退 jdk17 |
-| R3 | LGPL/MRPL/未知协议代码污染 | 高 | CI license 扫描 + NOTICE.md 登记 + 只读清单（见 3.2） |
+| R3 | LGPL/AGPL/MRPL 代码污染（fuint 系、Jeepay、Floreant） | 高 | 已核验并划红线（见核验报告）；CI license 扫描 + NOTICE.md 登记 + 只读清单（见 3.2） |
 | R4 | 储值预付卡属地合规（单用途预付卡规定） | 中 | 资金走商家自己商户号；上线前咨询属地政策；必要时储值功能按地区灰度 |
 | R5 | 云打印机型号兼容 | 中 | 只承诺易联云/飞鹅，输出认证硬件清单；适配器模式留扩展 |
 | R6 | 协同点餐状态复杂（弱网/并发/断连） | 中 | 服务端权威 + 版本快照回放；先单人后多人渐进上线；M5 验收含压测 |
