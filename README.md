@@ -153,22 +153,13 @@ yshop-drink-uniapp-vue3      # 移动端（UniApp Vue3，支持微信小程序 /
 
 ### 后台截图
 
-| | |
-|:---:|:---:|
-| ![后台截图 1](assets/3000.png) | ![输入图片说明](assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260918084858_642_52.png) |
-| ![后台截图 3](assets/3001.png) | ![后台截图 4](assets/3002.png) |
-| ![后台截图 5](assets/3003.png) | ![后台截图 6](assets/3004.png) |
-
-<p align="center">
-  <img src="assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310000501_559_6.png" alt="后台截图 7" width="48%" />
-  <img src="assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310001028_564_6.png" alt="后台截图 8" width="48%" />
-</p>
-
-<p align="center">
-  <img src="assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260310001057_565_6.png" alt="后台截图 9" width="48%" />
-</p>
-
----
+![输入图片说明](assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260919180832_664_52.png)
+![输入图片说明](assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260919180850_665_52.png)
+![输入图片说明](assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260919180949_667_52.png)
+![输入图片说明](assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260919180917_666_52.png)
+![输入图片说明](assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260919181048_669_52.png)
+![输入图片说明](assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260919181019_668_52.png)
+![输入图片说明](assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260919181200_671_52.png)
 
 ## 技术栈
 
